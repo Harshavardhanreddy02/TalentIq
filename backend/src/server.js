@@ -21,7 +21,8 @@ app.use(express.json());
 const allowedOrigins = [
   ENV.CLIENT_URL, // production
   'http://localhost:5173', // Vite dev server
-  'http://localhost:3000'  // Common React dev server
+  'http://localhost:3000', // Common React dev server
+  'https://codedrill-d18m.vercel.app' // Deployed frontend
 ];
 
 app.use(cors({
