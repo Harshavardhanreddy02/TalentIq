@@ -17,8 +17,26 @@ const __dirname = path.resolve();
 
 // middleware
 app.use(express.json());
-// credentials:true meaning?? => server allows a browser to include cookies on request
-app.use(cors({ origin: ENV.CLIENT_URL, credentials: true }));
+// Configure CORS to allow both production and development origins
+const allowedOrigins = [
+  ENV.CLIENT_URL, // production
+  'http://localhost:5173', // Vite dev server
+  'http://localhost:3000'  // Common React dev server
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    // allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
+  credentials: true
+}));
+
 app.use(clerkMiddleware()); // this adds auth field to request object: req.auth()
 
 app.use("/api/inngest", serve({ client: inngest, functions }));
