@@ -3,6 +3,9 @@ import path from "path";
 import cors from "cors";
 import { serve } from "inngest/express";
 import { clerkMiddleware } from "@clerk/express";
+import { WebSocketServer } from "ws";
+import { setupWSConnection } from "./lib/yjs-server.js";
+import { createServer } from "http";
 
 import { ENV } from "./lib/env.js";
 import { connectDB } from "./lib/db.js";
@@ -12,6 +15,8 @@ import chatRoutes from "./routes/chatRoutes.js";
 import sessionRoutes from "./routes/sessionRoute.js";
 
 const app = express();
+const server = createServer(app);
+const wss = new WebSocketServer({ noServer: true });
 
 const __dirname = path.resolve();
 
@@ -37,6 +42,17 @@ app.use(cors({
   },
   credentials: true
 }));
+server.on("upgrade", (request, socket, head) => {
+  wss.handleUpgrade(request, socket, head, (ws) => {
+    wss.emit("connection", ws, request);
+  });
+});
+
+// Yjs connection handler
+wss.on("connection", (conn, req) => {
+  // setupWSConnection handles all the Yjs syncing logic automatically
+  setupWSConnection(conn, req, { gc: true });
+});
 
 app.use(clerkMiddleware()); // this adds auth field to request object: req.auth()
 
@@ -60,7 +76,7 @@ if (ENV.NODE_ENV === "production") {
 const startServer = async () => {
   try {
     await connectDB();
-    app.listen(ENV.PORT, () => console.log("Server is running on port:", ENV.PORT));
+    server.listen(ENV.PORT, () => console.log("Server is running on port:", ENV.PORT));
   } catch (error) {
     console.error(" Error starting the server", error);
   }

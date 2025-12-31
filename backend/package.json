@@ -4,7 +4,8 @@
   "main": "src/server.js",
   "scripts": {
     "dev": "nodemon src/server.js",
-    "start": "node src/server.js"
+    "start": "node src/server.js",
+    "seed": "node src/seed.js"
   },
   "type": "module",
   "keywords": [],
@@ -13,13 +14,18 @@
   "description": "",
   "dependencies": {
     "@clerk/express": "^1.7.41",
+    "@monaco-editor/react": "^4.7.0",
     "@stream-io/node-sdk": "^0.7.12",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "inngest": "^3.44.3",
+    "lib0": "^0.2.117",
     "mongoose": "^8.19.1",
-    "stream-chat": "^9.24.0"
+    "stream-chat": "^9.24.0",
+    "y-monaco": "^0.1.6",
+    "y-websocket": "^3.0.0",
+    "yjs": "^13.6.28"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"

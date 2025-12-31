@@ -339,6 +339,248 @@ print(maxArea([1,1]))  # Expected: 1`,
       java: "49\n1",
     },
   },
+
+  "binary-search": {
+  id: "binary-search",
+  title: "Binary Search",
+  difficulty: "Easy",
+  category: "Array • Binary Search",
+  description: {
+    text: "Given a sorted array of integers nums and a target value, return the index if found.",
+    notes: ["If target does not exist, return -1."],
+  },
+  examples: [
+    { input: "nums = [-1,0,3,5,9,12], target = 9", output: "4" },
+    { input: "nums = [-1,0,3,5,9,12], target = 2", output: "-1" },
+  ],
+  constraints: ["1 ≤ nums.length ≤ 10⁴"],
+  starterCode: {
+    javascript: `function search(nums, target) {\n  // Write your solution here\n}`,
+    python: `def search(nums, target):\n    pass`,
+    java: `class Solution {\n    public int search(int[] nums, int target) {\n        return -1;\n    }\n}`,
+  },
+  expectedOutput: {
+    javascript: "4\n-1",
+    python: "4\n-1",
+    java: "4\n-1",
+  },
+},
+
+"merge-sorted-array": {
+  id: "merge-sorted-array",
+  title: "Merge Sorted Array",
+  difficulty: "Easy",
+  category: "Array • Two Pointers",
+  description: {
+    text: "Merge two sorted arrays nums1 and nums2 into nums1 as one sorted array.",
+    notes: ["nums1 has enough space to hold nums2."],
+  },
+  examples: [
+    {
+      input: "nums1 = [1,2,3,0,0,0], nums2 = [2,5,6]",
+      output: "[1,2,2,3,5,6]",
+    },
+  ],
+  constraints: ["nums1.length == m + n"],
+  starterCode: {
+    javascript: `function merge(nums1, m, nums2, n) {\n  // Write your solution here\n}`,
+    python: `def merge(nums1, m, nums2, n):\n    pass`,
+    java: `class Solution {\n    public void merge(int[] nums1, int m, int[] nums2, int n) {}\n}`,
+  },
+  expectedOutput: {
+    javascript: "[1,2,2,3,5,6]",
+    python: "[1,2,2,3,5,6]",
+    java: "[1,2,2,3,5,6]",
+  },
+},
+
+
+"linked-list-cycle": {
+  id: "linked-list-cycle",
+  title: "Linked List Cycle",
+  difficulty: "Easy",
+  category: "Linked List • Two Pointers",
+  description: {
+    text: "Determine if a linked list has a cycle.",
+    notes: ["Use constant memory if possible."],
+  },
+  examples: [
+    { input: "head = [3,2,0,-4], pos = 1", output: "true" },
+    { input: "head = [1], pos = -1", output: "false" },
+  ],
+  constraints: ["Number of nodes ≤ 10⁴"],
+  starterCode: {
+    javascript: `function hasCycle(head) {\n  // Write your solution here\n}`,
+    python: `def hasCycle(head):\n    pass`,
+    java: `class Solution {\n    public boolean hasCycle(ListNode head) { return false; }\n}`,
+  },
+  expectedOutput: {
+    javascript: "true\nfalse",
+    python: "True\nFalse",
+    java: "true\nfalse",
+  },
+},
+
+
+"climbing-stairs": {
+  id: "climbing-stairs",
+  title: "Climbing Stairs",
+  difficulty: "Easy",
+  category: "Dynamic Programming",
+  description: {
+    text: "Each time you can climb 1 or 2 steps. How many distinct ways to reach the top?",
+    notes: [],
+  },
+  examples: [
+    { input: "n = 3", output: "3" },
+    { input: "n = 5", output: "8" },
+  ],
+  constraints: ["1 ≤ n ≤ 45"],
+  starterCode: {
+    javascript: `function climbStairs(n) {\n  // Write your solution here\n}`,
+    python: `def climbStairs(n):\n    pass`,
+    java: `class Solution {\n    public int climbStairs(int n) { return 0; }\n}`,
+  },
+  expectedOutput: {
+    javascript: "3\n8",
+    python: "3\n8",
+    java: "3\n8",
+  },
+},
+
+
+"longest-substring-without-repeating": {
+  id: "longest-substring-without-repeating",
+  title: "Longest Substring Without Repeating Characters",
+  difficulty: "Medium",
+  category: "Sliding Window",
+  description: {
+    text: "Return the length of the longest substring without repeating characters.",
+    notes: [],
+  },
+  examples: [
+    { input: 's = "abcabcbb"', output: "3" },
+    { input: 's = "bbbbb"', output: "1" },
+  ],
+  constraints: ["0 ≤ s.length ≤ 5 * 10⁴"],
+  starterCode: {
+    javascript: `function lengthOfLongestSubstring(s) {\n  // Write your solution here\n}`,
+    python: `def lengthOfLongestSubstring(s):\n    pass`,
+    java: `class Solution {\n    public int lengthOfLongestSubstring(String s) { return 0; }\n}`,
+  },
+  expectedOutput: {
+    javascript: "3\n1",
+    python: "3\n1",
+    java: "3\n1",
+  },
+},
+
+
+"three-sum": {
+  id: "three-sum",
+  title: "3Sum",
+  difficulty: "Medium",
+  category: "Array • Two Pointers",
+  description: {
+    text: "Find all unique triplets that sum to zero.",
+    notes: ["Result must not contain duplicates."],
+  },
+  examples: [
+    { input: "nums = [-1,0,1,2,-1,-4]", output: "[[-1,-1,2],[-1,0,1]]" },
+  ],
+  constraints: ["3 ≤ nums.length ≤ 3000"],
+  starterCode: {
+    javascript: `function threeSum(nums) {\n  // Write your solution here\n}`,
+    python: `def threeSum(nums):\n    pass`,
+    java: `class Solution {\n    public List<List<Integer>> threeSum(int[] nums) { return new ArrayList<>(); }\n}`,
+  },
+  expectedOutput: {
+    javascript: "[[-1,-1,2],[-1,0,1]]",
+    python: "[[-1,-1,2],[-1,0,1]]",
+    java: "[[-1,-1,2],[-1,0,1]]",
+  },
+},
+
+
+"product-of-array-except-self": {
+  id: "product-of-array-except-self",
+  title: "Product of Array Except Self",
+  difficulty: "Medium",
+  category: "Array • Prefix Sum",
+  description: {
+    text: "Return an array where each element is the product of all elements except itself.",
+    notes: ["Do not use division."],
+  },
+  examples: [
+    { input: "nums = [1,2,3,4]", output: "[24,12,8,6]" },
+  ],
+  constraints: ["2 ≤ nums.length ≤ 10⁵"],
+  starterCode: {
+    javascript: `function productExceptSelf(nums) {\n  // Write your solution here\n}`,
+    python: `def productExceptSelf(nums):\n    pass`,
+    java: `class Solution {\n    public int[] productExceptSelf(int[] nums) { return new int[0]; }\n}`,
+  },
+  expectedOutput: {
+    javascript: "[24,12,8,6]",
+    python: "[24,12,8,6]",
+    java: "[24,12,8,6]",
+  },
+},
+
+
+"valid-parentheses": {
+  id: "valid-parentheses",
+  title: "Valid Parentheses",
+  difficulty: "Easy",
+  category: "Stack",
+  description: {
+    text: "Determine if the input string of brackets is valid.",
+    notes: ["Every opening bracket must have a matching closing bracket."],
+  },
+  examples: [
+    { input: 's = "()"', output: "true" },
+    { input: 's = "(]"', output: "false" },
+  ],
+  constraints: ["1 ≤ s.length ≤ 10⁴"],
+  starterCode: {
+    javascript: `function isValid(s) {\n  // Write your solution here\n}`,
+    python: `def isValid(s):\n    pass`,
+    java: `class Solution {\n    public boolean isValid(String s) { return false; }\n}`,
+  },
+  expectedOutput: {
+    javascript: "true\nfalse",
+    python: "True\nFalse",
+    java: "true\nfalse",
+  },
+},
+
+
+"majority-element": {
+  id: "majority-element",
+  title: "Majority Element",
+  difficulty: "Easy",
+  category: "Array • Boyer-Moore",
+  description: {
+    text: "Find the element that appears more than ⌊n/2⌋ times.",
+    notes: ["The majority element always exists."],
+  },
+  examples: [
+    { input: "nums = [3,2,3]", output: "3" },
+    { input: "nums = [2,2,1,1,1,2,2]", output: "2" },
+  ],
+  constraints: ["1 ≤ nums.length ≤ 5 * 10⁴"],
+  starterCode: {
+    javascript: `function majorityElement(nums) {\n  // Write your solution here\n}`,
+    python: `def majorityElement(nums):\n    pass`,
+    java: `class Solution {\n    public int majorityElement(int[] nums) { return 0; }\n}`,
+  },
+  expectedOutput: {
+    javascript: "3\n2",
+    python: "3\n2",
+    java: "3\n2",
+  },
+},
+
 };
 
 export const LANGUAGE_CONFIG = {

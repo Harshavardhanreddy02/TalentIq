@@ -10,3 +10,34 @@
     cursor: pointer;
   }
 }
+
+
+/* Remote cursor line */
+.yRemoteSelection {
+  background-color: rgba(74, 144, 226, 0.2);
+}
+
+.yRemoteSelectionHead {
+  position: absolute;
+  border-left: 2px solid;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* The floating label for the name */
+.yRemoteSelectionHead::after {
+  position: absolute;
+  content: attr(data-user-name); 
+  top: -1.4em;
+  left: -2px;
+  padding: 0px 6px;
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  white-space: nowrap;
+  background-color: inherit; /* Uses the color from the JS 'color' field */
+  border-radius: 3px 3px 3px 0;
+  pointer-events: none;
+}
