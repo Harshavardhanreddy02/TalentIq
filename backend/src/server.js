@@ -13,6 +13,8 @@ import { inngest, functions } from "./lib/inngest.js";
 
 import chatRoutes from "./routes/chatRoutes.js";
 import sessionRoutes from "./routes/sessionRoute.js";
+import { rateLimit } from 'express-rate-limit';
+import { ipKeyGenerator } from 'express-rate-limit';
 
 const app = express();
 const server = createServer(app);
@@ -54,13 +56,25 @@ wss.on("connection", (conn, req) => {
   setupWSConnection(conn, req, { gc: true });
 });
 
+export const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // Limit each IP to 100 requests per windowMs
+  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+  legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+  keyGenerator: (req) => {
+    // Use the ipKeyGenerator helper to properly handle both IPv4 and IPv6
+    return ipKeyGenerator(req);
+  }
+});
+
 app.use(clerkMiddleware()); // this adds auth field to request object: req.auth()
 
+app.use("/api", apiLimiter);
 app.use("/api/inngest", serve({ client: inngest, functions }));
 app.use("/api/chat", chatRoutes);
 app.use("/api/sessions", sessionRoutes);
 
-app.get("/health", (req, res) => {
+app.get("/api/health", (req, res) => {
   res.status(200).json({ msg: "api is up and running" });
 });
 
@@ -68,7 +82,7 @@ app.get("/health", (req, res) => {
 if (ENV.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
-  app.get("/{*any}", (req, res) => {
+  app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
   });
 }
